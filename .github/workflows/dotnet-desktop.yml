@@ -1,0 +1,26 @@
+name: chamma chamma
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  test-again:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3
+      - name: Setup Environmenet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0'
+          
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Web
+        run: dotnet build
+      - name: Test Web
+        run: dotnet test
+      - name: Greetings
+        run: echo"Hope your journey is smooth"
